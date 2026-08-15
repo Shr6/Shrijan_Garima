@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One More Thing — Shrijan &amp; Garima</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .propose-stage{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .p-bg{
+    position:absolute; inset:0; z-index:-2;
+  }
+  .p-bg img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:50% 30%;
+    filter:saturate(0.8) blur(1.5px);
+  }
+  .p-bg::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom, rgba(251,244,238,0.82), rgba(251,244,238,0.94) 60%, var(--cream) 100%);
+  }
+
+  .p-eyebrow{
+    font-family:'Marcellus', serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    color:var(--deep-rose);
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.3s;
+  }
+  .p-question{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(2.1rem, 7vw, 4.2rem);
+    line-height:1.15;
+    color:var(--ink);
+    max-width:16ch;
+    margin-top:1rem;
+    opacity:0;
+    animation:fadeUp 1.1s ease forwards 0.6s;
+  }
+  .p-sub{
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    margin-top:1.4rem;
+    max-width:36ch;
+    line-height:1.8;
+    opacity:0;
+    animation:fadeUp 1.1s ease forwards 0.9s;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .p-actions{
+    margin-top:3rem;
+    display:flex;
+    gap:1.2rem;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    animation:fadeUp 1.1s ease forwards 1.2s;
+    position:relative;
+    min-height:60px;
+  }
+  .p-yes{
+    padding:1rem 2.6rem;
+    background:var(--deep-rose);
+    color:#fff;
+    border:none;
+    border-radius:2px;
+    font-family:'Marcellus', serif;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:0 14px 30px -14px rgba(180,100,108,0.6);
+  }
+  .p-yes:hover{transform:translateY(-2px); box-shadow:0 18px 34px -14px rgba(180,100,108,0.75);}
+  .p-no{
+    padding:1rem 1.8rem;
+    background:transparent;
+    color:var(--ink-soft);
+    border:1px solid rgba(138,116,118,0.35);
+    border-radius:2px;
+    font-family:'Poppins', sans-serif;
+    font-size:0.78rem;
+    cursor:pointer;
+    transition:transform 0.2s ease;
+    position:relative;
+  }
+
+  .celebration{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .celebration.show{display:flex;}
+  .propose-stage.answered .p-eyebrow,
+  .propose-stage.answered .p-question,
+  .propose-stage.answered .p-sub,
+  .propose-stage.answered .p-actions{
+    display:none;
+  }
+  .c-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(2.2rem, 7vw, 4rem);
+    color:var(--deep-rose);
+  }
+  .c-sub{
+    margin-top:1rem;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    max-width:34ch;
+    line-height:1.8;
+  }
+  .c-sign{
+    margin-top:2.2rem;
+    font-family:'Marcellus', serif;
+    font-size:0.68rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .heart{
+    position:fixed;
+    top:-40px;
+    font-size:1.2rem;
+    color:var(--rose);
+    pointer-events:none;
+    opacity:0.85;
+    animation:fall linear forwards;
+    z-index:60;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(300deg); opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="index.html">S &amp; G</a>
+  <div class="dots">
+    <a href="index.html" title="Home"></a>
+    <a href="story.html" title="Our Story"></a>
+    <a href="gallery.html" title="Gallery"></a>
+    <a href="propose.html" title="The Question"></a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="propose-stage" id="stage">
+    <div class="p-bg"><img src="assets/img/photo5.jpg" alt="Shrijan and Garima looking out at the sky together"></div>
+
+    <div class="p-eyebrow">Kartik Brought Us Here</div>
+    <h1 class="p-question">Garima, will you marry me?</h1>
+    <p class="p-sub">From a friend request to forever, one Kartik at a time. I'd choose every one of those days again, and every day after.</p>
+
+    <div class="p-actions" id="actions">
+      <button class="p-yes" id="yesBtn">Yes, forever</button>
+      <button class="p-no" id="noBtn">Ask me later</button>
+    </div>
+
+    <div class="celebration" id="celebration">
+      <div class="c-title">She said yes.</div>
+      <p class="c-sub">Here's to every Kartik still to come, and to finally getting to say this out loud.</p>
+      <div class="c-sign">Shrijan &amp; Garima</div>
+    </div>
+  </section>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>
+  const stage = document.getElementById('stage');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const actions = document.getElementById('actions');
+  const celebration = document.getElementById('celebration');
+
+  function spawnHearts(count){
+    for(let i=0;i<count;i++){
+      setTimeout(()=>{
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.textContent = ['♡','❤','✿'][Math.floor(Math.random()*3)];
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.fontSize = (0.9 + Math.random()*1.4) + 'rem';
+        h.style.animationDuration = (3 + Math.random()*2.5) + 's';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 6000);
+      }, i*90);
+    }
+  }
+
+  yesBtn.addEventListener('click', () => {
+    stage.classList.add('answered');
+    celebration.classList.add('show');
+    spawnHearts(28);
+  });
+
+  // playful dodge for the "ask me later" button, then still works if clicked
+  let dodges = 0;
+  function dodge(){
+    if (dodges >= 4) return;
+    dodges++;
+    const maxX = Math.min(120, window.innerWidth * 0.25);
+    const x = (Math.random()*2-1) * maxX;
+    const y = (Math.random()*2-1) * 24;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+  noBtn.addEventListener('mouseenter', dodge);
+  noBtn.addEventListener('click', (e) => {
+    if (dodges < 4){
+      e.preventDefault();
+      dodge();
+      return;
+    }
+  });
+</script>
+</body>
+</html>
